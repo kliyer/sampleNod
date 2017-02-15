@@ -16,6 +16,11 @@ build:
     - echo "this is master branch"
 
   ci:
+    - sudo add-apt-repository ppa:wine/wine-builds
+    - sudo dpkg --add-architecture i386
+    - sudo apt-get update
+    - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends winehq-devel
+    - wine
     - npm install
 
   post_ci:
