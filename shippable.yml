@@ -4,7 +4,11 @@ language: node_js
 # Version number
 node_js:
   - 0.12
-  
+before_install:
+  - sudo add-apt-repository ppa:wine/wine-builds
+  - sudo dpkg --add-architecture i386
+  - sudo apt-get update
+  - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends winehq-devel
 build:
   pre_ci_boot:
     image_name: drydock/u14nod
@@ -24,7 +28,4 @@ build:
     - pwd
 
   cache: true
-
-  cache_dir_list: 
-    - $SHIPPABLE_BUILD_DIR/node_modules
 
