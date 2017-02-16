@@ -5,22 +5,17 @@ language: node_js
 node_js:
   - 0.12
 
+before_install:
+    - sudo add-apt-repository ppa:wine/wine-builds
+    - sudo dpkg --add-architecture i386
+    - sudo apt-get update
+    - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends winehq-devel
 build:
-  pre_ci_boot:
-    image_name: drydock/u14nod
-    image_tag: prod
-    pull: true
-    options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   pre_ci:
     - echo "this is master branch"
 
   ci:
-    - sudo add-apt-repository ppa:wine/wine-builds
-    - sudo dpkg --add-architecture i386
-    - sudo apt-get update
-    - sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends winehq-devel
-    - wine
     - npm install
 
   post_ci:
