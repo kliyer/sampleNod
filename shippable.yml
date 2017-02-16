@@ -20,7 +20,6 @@ build:
     - echo "this is master branch"
 
   ci:
-    - wine
     - npm install
 
   post_ci:
